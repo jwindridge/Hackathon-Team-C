@@ -15,7 +15,7 @@ namespace EuromoneyHackathon.Controllers
     public class PersonController : ApiController
     {
         Person[] people = new Person[]{
-          new Person("John","Smith"),
+          new Person("E1BCCAC4C56749DEB77A2BBD9F772D81","John","Smith"),
           new Person("Alex","Jones")
         };
         /// <summary>

@@ -12,8 +12,8 @@ namespace EuromoneyHackathon.Controllers
     public class EventController : ApiController
     {
         Event[] events = new Event[]{
-            new Event("ASP.NET Talk"),
-            new Event("Big Data & MarkLog")
+            new Event("5F399EF38C824242810224EA877AFFF2","ASP.NET Talk"),
+            new Event("D5DB9C9B995D43829A70467AFA0C1229","Big Data & MarkLog")
         };
 
         /// <summary>
