@@ -8,7 +8,6 @@ using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
-using RestSharp;
 using EuromoneyHackathon.Models;
 
 namespace EuromoneyHackathon.External
@@ -17,34 +16,36 @@ namespace EuromoneyHackathon.External
     {
         private string baseURL = @"http://emhackathon2014-ml-c.cloudapp.net:8004";
         
-        private MarkLogicLayer instance;
+        //private MarkLogicLayer instance;
 
         public MarkLogicLayer()
         {
 
         }
 
-        public static String getFromML(string id)
+        public static JObject getFromML(string id)
         {
             var client = new RestClient("http://emhackathon2014-ml-c.cloudapp.net:8004/");
+            client.Authenticator = new HttpBasicAuthenticator("admin", "M4rkL0gic");
             var request = new RestRequest("v1/documents?uri=event_{id}.json", Method.GET);
             request.AddUrlSegment("id", id);
 
             RestResponse response = (RestResponse)client.Execute(request);
             var content = response.Content;
-            //JObject result = JObject.Parse(content);
+            JObject result = JObject.Parse(content);
 
             /*var results = (from d in ret.Children()
                            where d.Contains("name")
                            select d).ToList();
             */
-
-            return content;
+            return result;
         }
 
-        public IRestResponse putPerson(Person person){
+
+        public IRestResponse putPerson(Person person)
+        {
             RestClient client = new RestClient();
-            client.Authenticator = new SimpleAuthenticator("username", "admin", "password", "M4rkL0gic");
+            client.Authenticator = new HttpBasicAuthenticator("admin","M4rkL0gic");
             RestRequest request = new RestRequest(Method.PUT);
             client.BaseUrl = baseURL;
             request.Resource = "v1/documents?uri={uri}.json";
