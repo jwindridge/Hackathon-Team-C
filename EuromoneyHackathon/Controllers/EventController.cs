@@ -52,10 +52,10 @@ namespace EuromoneyHackathon.Controllers
             return response; 
         }
 
-        public void queryEvent(string eid)
-        {
-           MarkLogicLayer.getEventML(eid);
-        }
+       // public void queryEvent(string eid)
+        //{
+       //    MarkLogicLayer.getEventML(eid);
+        //}
 
         public Response PutEvent([FromBody]Event eventToPut)
         {
