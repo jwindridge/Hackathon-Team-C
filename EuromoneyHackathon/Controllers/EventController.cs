@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace EuromoneyHackathon.Controllers
 {
-    public class EventController:ApiController
+    public class EventController : ApiController
     {
         Event[] events = new Event[]{
             new Event("ASP.NET Talk"),
@@ -21,12 +21,14 @@ namespace EuromoneyHackathon.Controllers
         /// </summary>
         /// <returns></returns>
         /// 
-        public JObject GetAllEvents()
+        public Response GetAllEvents()
         {
-            JObject response = new JObject();
-            response.Add("errorCode", 0);
-            JArray payload = JArray.FromObject(events);
-            response.Add("response", payload);
+            Response response = new Response();
+            //JObject response = new JObject();
+            //response.Add("errorCode", 0);
+            //JArray payload = JArray.FromObject(events);
+            //response.Add("response", payload);
+            response.payload = events;
             return response;
         }
 
