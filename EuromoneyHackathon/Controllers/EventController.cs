@@ -24,10 +24,6 @@ namespace EuromoneyHackathon.Controllers
         public Response GetAllEvents()
         {
             Response response = new Response();
-            //JObject response = new JObject();
-            //response.Add("errorCode", 0);
-            //JArray payload = JArray.FromObject(events);
-            //response.Add("response", payload);
             response.payload = events;
             return response;
         }
