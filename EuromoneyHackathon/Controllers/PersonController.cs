@@ -17,8 +17,8 @@ namespace EuromoneyHackathon.Controllers
     public class PersonController : ApiController
     {
         Person[] people = new Person[]{
-          new Person("John","Smith"),
-          new Person("Alex","Jones")
+          new Person("John","Smith","https://www.linkedin.com/pub/john-smith/12/345/678"),
+          new Person("Alex","Jones","https://www.linkedin.com/pub/alex-jones/98/765/432")
         };
         /// <summary>
         /// Basic method to return a list of all people stored in the database (currently maintaned as static above)
@@ -54,10 +54,11 @@ namespace EuromoneyHackathon.Controllers
         {
             Response response = new Response();
             String mlResponse = MarkLogicLayer.putPerson(person);
-            JObject jsonPayload = new JObject();
-            jsonPayload.Add("server-message", mlResponse);
+            JObject jsonPayload = JObject.FromObject(person);
             response.payload = jsonPayload;
             return response;
         }
+
+        
     }
 }
