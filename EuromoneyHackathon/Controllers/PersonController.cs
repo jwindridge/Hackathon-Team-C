@@ -31,17 +31,23 @@ namespace EuromoneyHackathon.Controllers
             return response;
         }
 
-        public Response getPerson(string firstName, string lastName)
+        public Response getPerson(string pid)
         {
             Response response = new Response();
-            var person = people.FirstOrDefault((x)=>(x.FirstName == firstName && x.LastName == lastName));
-            if (person == null){
+            var person = MarkLogicLayer.getPersonML(pid);
+            //var _event = events.FirstOrDefault((p)=> p.EventName == name);         
+
+            if (person == null)
+            {
                 response.errorCode = 404;
-                response.errorText = "PERSON_NOT_FOUND";
-            } else {
+                response.errorText = "EVENT_NOT_FOUND";
+            }
+            else
+            {
                 response.payload = person;
             }
-            return response;
+
+            return response; 
         }
         [HttpPut]
         public Response PutPerson([FromBody]Person person)
