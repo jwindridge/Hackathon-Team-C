@@ -28,9 +28,9 @@ namespace EuromoneyHackathon.External
         {
             var client = new RestClient("http://emhackathon2014-ml-c.cloudapp.net:8004/");
             var request = new RestRequest("v1/documents?uri=event_{id}.json", Method.GET);
-            request.AddUrlSegment("id",id);
+            request.AddUrlSegment("id", id);
 
-            RestResponse response = (RestResponse) client.Execute(request);
+            RestResponse response = (RestResponse)client.Execute(request);
             var content = response.Content;
             //JObject result = JObject.Parse(content);
 
@@ -40,6 +40,7 @@ namespace EuromoneyHackathon.External
             */
 
             return content;
+        }
 
         public IRestResponse putPerson(Person person){
             RestClient client = new RestClient();
