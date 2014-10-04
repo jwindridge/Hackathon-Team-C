@@ -34,5 +34,10 @@ namespace EuromoneyHackathon.Models
             this.personFirstName = firstName;
             this.personLastName = lastName;
         }
+
+        public Person()
+        {
+            this.personId = Guid.NewGuid().ToString().Replace("{", "").Replace("}", "").Replace("-", "");
+        }
     }
 }

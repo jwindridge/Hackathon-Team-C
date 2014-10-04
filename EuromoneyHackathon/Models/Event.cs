@@ -30,5 +30,10 @@ namespace EuromoneyHackathon.Models
             this.eventName = eventName;
         }
 
+        public Event()
+        {
+            this.eventId = Guid.NewGuid().ToString().Replace("{", "").Replace("}", "").Replace("-", "");
+        }
+
     }
 }

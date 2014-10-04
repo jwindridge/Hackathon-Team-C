@@ -6,6 +6,8 @@ using System.Web.Http;
 using EuromoneyHackathon.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using EuromoneyHackathon.External;
+using RestSharp;
 
 
 
@@ -39,6 +41,17 @@ namespace EuromoneyHackathon.Controllers
             } else {
                 response.payload = person;
             }
+            return response;
+        }
+        [HttpPut]
+        public Response PutPerson([FromBody]Person person)
+        {
+            Response response = new Response();
+            MarkLogicLayer layer = new MarkLogicLayer();
+            RestResponse mlResponse = (RestResponse)layer.putPerson(person);
+            JObject jsonPayload = new JObject();
+            jsonPayload.Add(mlResponse.StatusCode + " - " + mlResponse.StatusDescription);
+            response.payload = jsonPayload;
             return response;
         }
     }
