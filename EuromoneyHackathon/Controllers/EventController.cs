@@ -21,13 +21,13 @@ namespace EuromoneyHackathon.Controllers
         /// </summary>
         /// <returns></returns>
         /// 
-        public String GetAllEvents()
+        public JObject GetAllEvents()
         {
             JObject response = new JObject();
             response.Add("errorCode", 0);
             JArray payload = JArray.FromObject(events);
             response.Add("response", payload);
-            return response.ToString();
+            return response;
         }
 
         /// <summary>
