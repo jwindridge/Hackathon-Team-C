@@ -16,7 +16,7 @@ namespace EuromoneyHackathon.External
 {
     public class MarkLogicLayer
     {
-        private string baseURL = @"http://emhackathon2014-ml-c.cloudapp.net:8004/v1/documents";
+        private static string baseUrl = @"http://emhackathon2014-ml-c.cloudapp.net:8004/v1/documents";
         
         //private MarkLogicLayer instance;
 
@@ -63,8 +63,8 @@ namespace EuromoneyHackathon.External
             return result;
         }
 
-        public String putPerson(Person person){
-            String requestUrl = baseURL + "?uri=person_" + person.Id + ".json";
+        public static String putPerson(Person person){
+            String requestUrl = baseUrl + "?uri=person_" + person.Id + ".json";
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(requestUrl);
             string authInfo = "admin:M4rkL0gic";
             authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
@@ -74,6 +74,30 @@ namespace EuromoneyHackathon.External
             using (var streamWriter = new StreamWriter(request.GetRequestStream()))
             {
                 string json = JObject.FromObject(person).ToString();
+                streamWriter.Write(json);
+                streamWriter.Flush();
+            }
+
+            var httpResponse = (HttpWebResponse)request.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = streamReader.ReadToEnd();
+            }
+            return httpResponse.StatusCode.ToString() + " - " + httpResponse.StatusDescription;
+        }
+
+        public static String putEvent(Event eventToPut)
+        {
+            String requestUrl = baseUrl + "?uri=event_" + eventToPut.eventId + ".json";
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(requestUrl);
+            string authInfo = "admin:M4rkL0gic";
+            authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
+            request.Headers["Authorization"] = "Basic " + authInfo;
+            request.ContentType = "application/json";
+            request.Method = "PUT";
+            using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+            {
+                string json = JObject.FromObject(eventToPut).ToString();
                 streamWriter.Write(json);
                 streamWriter.Flush();
             }

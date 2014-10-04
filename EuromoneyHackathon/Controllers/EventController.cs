@@ -56,5 +56,15 @@ namespace EuromoneyHackathon.Controllers
         {
            MarkLogicLayer.getEventML(eid);
         }
+
+        public Response PutEvent([FromBody]Event eventToPut)
+        {
+            Response response = new Response();
+            String mlResponse = MarkLogicLayer.putEvent(eventToPut);
+            JObject jsonPayload = new JObject();
+            jsonPayload.Add("server-message", mlResponse);
+            response.payload = jsonPayload;
+            return response;
+        }
     }
 }
