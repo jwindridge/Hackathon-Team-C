@@ -9,21 +9,26 @@ namespace EuromoneyHackathon.Models
     {
         public string eventId { get; set; }
         public string eventName { get; set; }
+
         /// <summary>
-        /// Create event, generating new random eventId
+        /// Create event, generating new random eventId, with name specified by user
         /// </summary>
-        public Event()
+        public Event(string name)
         {
             this.eventId = Guid.NewGuid().ToString().Replace("{", "").Replace("}", "").Replace("-", "");
+            this.eventName = name;
         }
 
         /// <summary>
-        /// Create event, specifing eventId (used when initialising event class from data)
+        /// Create Event from existing Id and/or name
         /// </summary>
         /// <param name="eventId"></param>
-        public Event(string eventId)
+        /// <param name="name"></param>
+        public Event(string eventId, string name)
         {
             this.eventId = eventId;
+            this.eventName = eventName;
         }
+
     }
 }
