@@ -29,26 +29,26 @@ namespace EuromoneyHackathon.Controllers
         }
 
         /// <summary>
-        /// Get one event with event name
+        /// Get one event with event name in JSON format
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public String GetEvent(string name)
+        public Response GetEvent(string name)
         {
+            Response response = new Response();
+
             var _event = events.FirstOrDefault((p)=> p.eventName == name);         
-
-            JObject _response = new JObject();
-
-            _response.Add("errorCode",0);
+          
             if (_event == null)
             {
-                _response.Add("errorCode","EVENT_NOT_FOUND");//NotFound();
+                response.errorCode = 404;
+                response.errorText = "EVENT_NOT_FOUND" ; 
             }
             else {
-                _response.Add("response", JsonConvert.SerializeObject(_event));
+                response.payload = _event;
             }
             
-            return _response.ToString(); 
+            return response; 
         }
     }
 }
