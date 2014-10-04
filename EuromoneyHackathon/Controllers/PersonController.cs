@@ -43,12 +43,11 @@ namespace EuromoneyHackathon.Controllers
             }
             return response;
         }
-
-        public Response putPerson(string firstName, string lastName)
+        [HttpPut]
+        public Response PutPerson([FromBody]Person person)
         {
             Response response = new Response();
             MarkLogicLayer layer = new MarkLogicLayer();
-            Person person = new Person(firstName, lastName);
             RestResponse mlResponse = (RestResponse)layer.putPerson(person);
             JObject jsonPayload = new JObject();
             jsonPayload.Add(mlResponse.StatusCode + " - " + mlResponse.StatusDescription);

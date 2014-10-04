@@ -22,6 +22,7 @@ namespace EuromoneyHackathon.External
             RestClient client = new RestClient();
             client.Authenticator = new SimpleAuthenticator("username", "admin", "password", "M4rkL0gic");
             RestRequest request = new RestRequest(Method.PUT);
+            client.BaseUrl = baseURL;
             request.Resource = "v1/documents?uri={uri}.json";
             request.AddUrlSegment("uri", "person_" + person.personId);
             request.AddHeader("Content-Type","application/json");
