@@ -54,5 +54,11 @@ namespace EuromoneyHackathon.Controllers
             response.payload = jsonPayload;
             return response;
         }
+
+        public void queryPerson(string eid)
+        {
+            MarkLogicLayer.getPersonML(eid);
+        }
+
     }
 }

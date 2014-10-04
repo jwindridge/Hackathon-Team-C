@@ -23,7 +23,7 @@ namespace EuromoneyHackathon.External
 
         }
 
-        public static JObject getFromML(string id)
+        public static JObject getEventML(string id)
         {
             var client = new RestClient("http://emhackathon2014-ml-c.cloudapp.net:8004/");
             client.Authenticator = new HttpBasicAuthenticator("admin", "M4rkL0gic");
@@ -38,6 +38,26 @@ namespace EuromoneyHackathon.External
                            where d.Contains("name")
                            select d).ToList();
             */
+
+            return result;
+        }
+
+        public static JObject getPersonML(string id)
+        {
+            var client = new RestClient("http://emhackathon2014-ml-c.cloudapp.net:8004/");
+            client.Authenticator = new HttpBasicAuthenticator("admin", "M4rkL0gic");
+            var request = new RestRequest("v1/documents?uri=person_{id}.json", Method.GET);
+            request.AddUrlSegment("id", id);
+
+            RestResponse response = (RestResponse)client.Execute(request);
+            var content = response.Content;
+            JObject result = JObject.Parse(content);
+
+            /*var results = (from d in ret.Children()
+                           where d.Contains("name")
+                           select d).ToList();
+            */
+
             return result;
         }
 
