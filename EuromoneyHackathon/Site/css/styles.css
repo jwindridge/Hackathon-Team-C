@@ -1,0 +1,24 @@
+.page-header {
+margin: 100px 0 20px;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a {
+font-family: ubuntu, sans-serif;
+color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: ubuntu, sans-serif;
+	color: #5F9F9F;
+}
+
+.navbar-brand {
+	background: url(../img/logo.png) center left no-repeat;
+	padding-left: 55px;
+}
+
+.button-wrap img {width:100px}
+
+.button-wrap .placeholder {text-align: center}
+
+.navbar-client.navbar-inverse {background:#335477;}
