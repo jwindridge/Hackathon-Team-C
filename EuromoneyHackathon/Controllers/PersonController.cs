@@ -34,7 +34,7 @@ namespace EuromoneyHackathon.Controllers
         {
             JObject response = new JObject();
             response.Add("errorCode",0);
-            var person = people.FirstOrDefault((x)=>(x.personFirstName == firstName && x.personLastName == lastName);
+            var person = people.FirstOrDefault((x)=>(x.personFirstName == firstName && x.personLastName == lastName));
             if (person == null){
                 response.Add("errorCode","PERSON_NOT_FOUND");
             } else {

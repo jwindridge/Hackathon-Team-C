@@ -20,9 +20,11 @@ namespace EuromoneyHackathon.Controllers
         /// Get all events in JSON format
         /// </summary>
         /// <returns></returns>
+        /// 
         public String GetAllEvents()
         {
             JObject response = new JObject();
+            response.Add("errorCode", 0);
             response.Add("response", JsonConvert.SerializeObject(events));
             return response.ToString();
         }
