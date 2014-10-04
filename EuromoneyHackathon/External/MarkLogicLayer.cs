@@ -88,7 +88,7 @@ namespace EuromoneyHackathon.External
 
         public static String putEvent(Event eventToPut)
         {
-            String requestUrl = baseUrl + "?uri=event_" + eventToPut.eventId + ".json";
+            String requestUrl = baseUrl + "?uri=event_" + eventToPut.Id + ".json";
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(requestUrl);
             string authInfo = "admin:M4rkL0gic";
             authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));

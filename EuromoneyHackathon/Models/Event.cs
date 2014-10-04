@@ -7,32 +7,32 @@ namespace EuromoneyHackathon.Models
 {
     public class Event
     {
-        public string eventId { get; set; }
-        public string eventName { get; set; }
+        public string Id { get; set; }
+        public string EventName { get; set; }
 
         /// <summary>
-        /// Create event, generating new random eventId, with name specified by user
+        /// Create event, generating new random Id, with name specified by user
         /// </summary>
         public Event(string name)
         {
-            this.eventId = Guid.NewGuid().ToString().Replace("{", "").Replace("}", "").Replace("-", "");
-            this.eventName = name;
+            this.Id = Guid.NewGuid().ToString().Replace("{", "").Replace("}", "").Replace("-", "");
+            this.EventName = name;
         }
 
         /// <summary>
         /// Create Event from existing Id and/or name
         /// </summary>
-        /// <param name="eventId"></param>
+        /// <param name="Id"></param>
         /// <param name="name"></param>
         public Event(string eventId, string name)
         {
-            this.eventId = eventId;
-            this.eventName = eventName;
+            this.Id = eventId;
+            this.EventName = EventName;
         }
 
         public Event()
         {
-            this.eventId = Guid.NewGuid().ToString().Replace("{", "").Replace("}", "").Replace("-", "");
+            this.Id = Guid.NewGuid().ToString().Replace("{", "").Replace("}", "").Replace("-", "");
         }
 
     }

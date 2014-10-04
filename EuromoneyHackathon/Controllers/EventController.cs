@@ -38,7 +38,7 @@ namespace EuromoneyHackathon.Controllers
         {
             Response response = new Response();
             var _event = MarkLogicLayer.getEventML(eid);
-            //var _event = events.FirstOrDefault((p)=> p.eventName == name);         
+            //var _event = events.FirstOrDefault((p)=> p.EventName == name);         
           
             if (_event == null)
             {
