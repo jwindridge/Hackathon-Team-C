@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using EuromoneyHackathon.External;
 
 namespace EuromoneyHackathon.Controllers
 {
@@ -33,11 +34,11 @@ namespace EuromoneyHackathon.Controllers
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public Response GetEvent(string name)
+        public Response GetEvent(string eid)
         {
             Response response = new Response();
-
-            var _event = events.FirstOrDefault((p)=> p.eventName == name);         
+            var _event = MarkLogicLayer.getFromML(eid);
+            //var _event = events.FirstOrDefault((p)=> p.eventName == name);         
           
             if (_event == null)
             {
@@ -49,6 +50,11 @@ namespace EuromoneyHackathon.Controllers
             }
             
             return response; 
+        }
+
+        public void queryEvent(string eid)
+        {
+           MarkLogicLayer.getFromML(eid);
         }
     }
 }
