@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-<<<<<<< HEAD
 using System.Net.Http;
 using System.IO;
 using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
-=======
 using RestSharp;
 using EuromoneyHackathon.Models;
->>>>>>> 6fced3428fea5e2b6e5844de432068459291695b
 
 namespace EuromoneyHackathon.External
 {
@@ -27,7 +24,6 @@ namespace EuromoneyHackathon.External
 
         }
 
-<<<<<<< HEAD
         public static String getFromML(string id)
         {
             var client = new RestClient("http://emhackathon2014-ml-c.cloudapp.net:8004/");
@@ -44,7 +40,7 @@ namespace EuromoneyHackathon.External
             */
 
             return content;
-=======
+
         public IRestResponse putPerson(Person person){
             RestClient client = new RestClient();
             client.Authenticator = new SimpleAuthenticator("username", "admin", "password", "M4rkL0gic");
@@ -54,7 +50,6 @@ namespace EuromoneyHackathon.External
             request.AddUrlSegment("uri", "person_" + person.personId);
             request.AddHeader("Content-Type","application/json");
             return client.Execute(request);
->>>>>>> 6fced3428fea5e2b6e5844de432068459291695b
         }
     }
 }
