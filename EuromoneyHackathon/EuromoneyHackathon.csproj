@@ -164,6 +164,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="External\MarkLogicLayer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -288,6 +289,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Site\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
