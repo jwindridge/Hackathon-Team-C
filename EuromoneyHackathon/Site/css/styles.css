@@ -22,3 +22,17 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .button-wrap .placeholder {text-align: center}
 
 .navbar-client.navbar-inverse {background:#335477;}
+
+.user-login {background: url(../img/login_bg.jpg); background-size: cover}
+
+.login {text-align: center}
+
+.login h1 {color:#fff;}
+
+.login img {position:relative; top:60px;}
+
+.white {color:#fff;}
+
+.linked-login {width:300px;margin-top: -40px}
+
+.form-signin {margin-top:100px;}
