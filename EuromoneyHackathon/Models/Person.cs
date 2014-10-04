@@ -7,9 +7,9 @@ namespace EuromoneyHackathon.Models
 {
     public class Person
     {
-        public string personId { get; set; }
-        public string personFirstName { get; set; }
-        public string personLastName { get; set; }
+        public string Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
         /// <summary>
         /// Create person, specifying id, first name & last name
@@ -19,9 +19,9 @@ namespace EuromoneyHackathon.Models
         /// <param name="lastName">Person's last name</param>
         public Person(string personId, string firstName, string lastName)
         {
-            this.personId = personId;
-            this.personFirstName = firstName;
-            this.personLastName = lastName;
+            this.Id = personId;
+            this.FirstName = firstName;
+            this.LastName = lastName;
         }
         /// <summary>
         /// Create person, generating id at random, but specifying name attributes
@@ -30,14 +30,14 @@ namespace EuromoneyHackathon.Models
         /// <param name="lastName">Person's last name</param>
         public Person(string firstName, string lastName)
         {
-            this.personId = Guid.NewGuid().ToString().Replace("{", "").Replace("}", "").Replace("-", "");
-            this.personFirstName = firstName;
-            this.personLastName = lastName;
+            this.Id = Guid.NewGuid().ToString().Replace("{", "").Replace("}", "").Replace("-", "");
+            this.FirstName = firstName;
+            this.LastName = lastName;
         }
 
         public Person()
         {
-            this.personId = Guid.NewGuid().ToString().Replace("{", "").Replace("}", "").Replace("-", "");
+            this.Id = Guid.NewGuid().ToString().Replace("{", "").Replace("}", "").Replace("-", "");
         }
     }
 }

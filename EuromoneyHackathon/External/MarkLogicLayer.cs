@@ -10,12 +10,14 @@ using Newtonsoft.Json.Linq;
 using RestSharp;
 using RestSharp;
 using EuromoneyHackathon.Models;
+using System.Configuration;
+using System.Text;
 
 namespace EuromoneyHackathon.External
 {
     public class MarkLogicLayer
     {
-        private string baseURL = @"http://emhackathon2014-ml-c.cloudapp.net:8004";
+        private string baseURL = @"http://emhackathon2014-ml-c.cloudapp.net:8004/v1/documents";
         
         private MarkLogicLayer instance;
 
@@ -42,15 +44,28 @@ namespace EuromoneyHackathon.External
             return content;
         }
 
-        public IRestResponse putPerson(Person person){
-            RestClient client = new RestClient();
-            client.Authenticator = new SimpleAuthenticator("username", "admin", "password", "M4rkL0gic");
-            RestRequest request = new RestRequest(Method.PUT);
-            client.BaseUrl = baseURL;
-            request.Resource = "v1/documents?uri={uri}.json";
-            request.AddUrlSegment("uri", "person_" + person.personId);
-            request.AddHeader("Content-Type","application/json");
-            return client.Execute(request);
+        public String putPerson(Person person){
+            String requestUrl = baseURL + "?uri=person_" + person.Id + ".json";
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(requestUrl);
+            string authInfo = "admin:M4rkL0gic";
+            authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
+            request.Headers["Authorization"] = "Basic " + authInfo;
+            request.ContentType = "application/json";
+            request.Method = "PUT";
+            using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+            {
+                string json = JObject.FromObject(person).ToString();
+                streamWriter.Write(json);
+                streamWriter.Flush();
+            }
+
+            var httpResponse = (HttpWebResponse)request.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = streamReader.ReadToEnd();
+            }
+            return httpResponse.StatusCode.ToString() + " - " + httpResponse.StatusDescription;
         }
+
     }
 }

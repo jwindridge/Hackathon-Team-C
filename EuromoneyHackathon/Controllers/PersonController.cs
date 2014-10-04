@@ -34,7 +34,7 @@ namespace EuromoneyHackathon.Controllers
         public Response getPerson(string firstName, string lastName)
         {
             Response response = new Response();
-            var person = people.FirstOrDefault((x)=>(x.personFirstName == firstName && x.personLastName == lastName));
+            var person = people.FirstOrDefault((x)=>(x.FirstName == firstName && x.LastName == lastName));
             if (person == null){
                 response.errorCode = 404;
                 response.errorText = "PERSON_NOT_FOUND";
@@ -46,11 +46,12 @@ namespace EuromoneyHackathon.Controllers
         [HttpPut]
         public Response PutPerson([FromBody]Person person)
         {
+            var rec = Request;
             Response response = new Response();
             MarkLogicLayer layer = new MarkLogicLayer();
-            RestResponse mlResponse = (RestResponse)layer.putPerson(person);
+            String mlResponse = layer.putPerson(person);
             JObject jsonPayload = new JObject();
-            jsonPayload.Add(mlResponse.StatusCode + " - " + mlResponse.StatusDescription);
+            jsonPayload.Add("server-message", mlResponse);
             response.payload = jsonPayload;
             return response;
         }
