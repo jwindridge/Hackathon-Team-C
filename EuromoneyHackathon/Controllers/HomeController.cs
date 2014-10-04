@@ -10,7 +10,7 @@ namespace EuromoneyHackathon.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectPermanent("/site");
         }
     }
 }
