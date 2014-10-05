@@ -62,6 +62,7 @@ namespace EuromoneyHackathon.Controllers
                 queryWiki(currPosArray[0]["company"]["name"].ToString());
             }
 
+
             Person markLogicPerson = MarkLogicLayer.getPersonMLByEmail(profileResultObject.GetValue("emailAddress").ToString());
             markLogicPerson.LinkedInAccessCode = accessToken;
 

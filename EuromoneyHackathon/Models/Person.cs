@@ -56,5 +56,13 @@ namespace EuromoneyHackathon.Models
             this.CompanyName = new string[] { };
             this.CompanyTitle = new string[] { };
         }
+
+        public Person(String personId)
+        {
+            this.Id = personId;
+            this.Interests = new string[] { };
+            this.CompanyName = new string[] { };
+            this.CompanyTitle = new string[] { };
+        }
     }
 }
