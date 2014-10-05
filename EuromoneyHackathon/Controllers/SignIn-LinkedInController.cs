@@ -62,15 +62,23 @@ namespace EuromoneyHackathon.Controllers
                 queryWiki(currPosArray[0]["company"]["name"].ToString());
             }
 
-            Person markLogicPerson = MarkLogicLayer.getPersonMLByEmail(profileResultObject.GetValue("emailAddress").ToString());
-            markLogicPerson.LinkedInAccessCode = accessToken;
-
+            JArray skills = (JArray)profileResultObject["skills"]["values"];
+            string[] interests = profileResultObject["interests"].ToString().Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
             string[] companyName = currPosArray.Select(x => x["company"]["name"].ToString()).ToArray();
             string[] companyPosn = currPosArray.Select(x => x["title"].ToString()).ToArray();
+            string[] skillsArr = skills.Select(x => x["skill"]["name"].ToString()).ToArray();
 
+            List<string> interestList = interests.ToList();
+            interestList.AddRange(skillsArr);
+            interests = interestList.ToArray();
+
+
+            Person markLogicPerson = MarkLogicLayer.getPersonMLByEmail(profileResultObject.GetValue("emailAddress").ToString());
             markLogicPerson.CompanyName = companyName;
             markLogicPerson.CompanyTitle = companyPosn;
-
+            markLogicPerson.Interests = interests;
+            markLogicPerson.LinkedInAccessCode = accessToken;
+            
             MarkLogicLayer.putPerson(markLogicPerson);
             return View();
 
