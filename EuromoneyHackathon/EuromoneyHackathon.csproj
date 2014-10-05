@@ -169,6 +169,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LinkedInController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\RecommendationController.cs" />
     <Compile Include="Controllers\SignIn-LinkedInController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="External\MarkLogicLayer.cs" />

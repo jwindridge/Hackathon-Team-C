@@ -155,5 +155,20 @@ namespace EuromoneyHackathon.External
         }
 
 
+        public static JArray getRecommendedEventFromPersonId(string pid)
+        {
+            String recommendUrl = "http://emhackathon2014-ml-c.cloudapp.net:8003/people2.xqy";
+            var client = new RestClient(recommendUrl);
+            client.Authenticator = new HttpBasicAuthenticator("admin", "M4rkL0gic");
+            var request = new RestRequest("?id = {id}", Method.GET);
+            request.AddUrlSegment("id", pid);
+
+            RestResponse response = (RestResponse)client.Execute(request);
+            var content = response.Content;
+            JArray result = JArray.Parse(content);
+
+            return result;
+        }
+
     }
 }
