@@ -12,6 +12,8 @@ namespace EuromoneyHackathon.Models
         public string LastName { get; set; }
         public string LinkedInUrl { get; set; }
         public string EmailAddress { get; set; }
+        public string[] Interests { get; set; }
+        public string Type = "Person";
 
         public string LinkedInAccessCode { get; set; }
 
@@ -28,6 +30,7 @@ namespace EuromoneyHackathon.Models
             this.LastName = lastName;
             this.LinkedInUrl = linkedInUrl;
             this.EmailAddress = emailAddress;
+            this.Interests = new string[] { };
         }
         /// <summary>
         /// Create person, generating id at random, but specifying name attributes
@@ -41,11 +44,13 @@ namespace EuromoneyHackathon.Models
             this.LastName = lastName;
             this.LinkedInUrl = linkedInUrl;
             this.EmailAddress = emailAddress;
+            this.Interests = new string[] { };
         }
 
         public Person()
         {
             this.Id = Guid.NewGuid().ToString().Replace("{", "").Replace("}", "").Replace("-", "");
+            this.Interests = new string[] { };
         }
     }
 }
