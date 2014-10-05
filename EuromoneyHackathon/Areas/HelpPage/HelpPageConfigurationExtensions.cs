@@ -36,10 +36,10 @@ namespace EuromoneyHackathon.Areas.HelpPage
         }
 
         /// <summary>
-        /// Sets the sample request directly for the specified media type and action.
+        /// Sets the sample authRequest directly for the specified media type and action.
         /// </summary>
         /// <param name="config">The <see cref="HttpConfiguration"/>.</param>
-        /// <param name="sample">The sample request.</param>
+        /// <param name="sample">The sample authRequest.</param>
         /// <param name="mediaType">The media type.</param>
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
@@ -49,10 +49,10 @@ namespace EuromoneyHackathon.Areas.HelpPage
         }
 
         /// <summary>
-        /// Sets the sample request directly for the specified media type and action with parameters.
+        /// Sets the sample authRequest directly for the specified media type and action with parameters.
         /// </summary>
         /// <param name="config">The <see cref="HttpConfiguration"/>.</param>
-        /// <param name="sample">The sample request.</param>
+        /// <param name="sample">The sample authRequest.</param>
         /// <param name="mediaType">The media type.</param>
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
@@ -63,7 +63,7 @@ namespace EuromoneyHackathon.Areas.HelpPage
         }
 
         /// <summary>
-        /// Sets the sample request directly for the specified media type of the action.
+        /// Sets the sample authRequest directly for the specified media type of the action.
         /// </summary>
         /// <param name="config">The <see cref="HttpConfiguration"/>.</param>
         /// <param name="sample">The sample response.</param>
@@ -103,7 +103,7 @@ namespace EuromoneyHackathon.Areas.HelpPage
 
         /// <summary>
         /// Specifies the actual type of <see cref="System.Net.Http.ObjectContent{T}"/> passed to the <see cref="System.Net.Http.HttpRequestMessage"/> in an action. 
-        /// The help page will use this information to produce more accurate request samples.
+        /// The help page will use this information to produce more accurate authRequest samples.
         /// </summary>
         /// <param name="config">The <see cref="HttpConfiguration"/>.</param>
         /// <param name="type">The type.</param>
@@ -116,7 +116,7 @@ namespace EuromoneyHackathon.Areas.HelpPage
 
         /// <summary>
         /// Specifies the actual type of <see cref="System.Net.Http.ObjectContent{T}"/> passed to the <see cref="System.Net.Http.HttpRequestMessage"/> in an action. 
-        /// The help page will use this information to produce more accurate request samples.
+        /// The help page will use this information to produce more accurate authRequest samples.
         /// </summary>
         /// <param name="config">The <see cref="HttpConfiguration"/>.</param>
         /// <param name="type">The type.</param>
