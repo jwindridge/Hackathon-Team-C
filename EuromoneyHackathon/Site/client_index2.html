@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -78,7 +78,7 @@
 
           <h2 class="sub-header">Events</h2>
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped events-table">
               <thead>
                 <tr>
                   <th>#</th>
@@ -113,5 +113,28 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        (function () {
+            var dataurl = "http://http://localhost:12067/";
+            $.getJSON(dataurl, {
+                format:"json"
+            })
+              .done(function (data) {
+                  
+
+                  $.each(data.items, function (item) {
+
+                      var persid = item.personId;
+                      var fname = item.personFirstName;
+                      var lname = item.personLastName;
+
+
+                      $('.events-table tbody').append('<tr>' + persid + '<td>' + fname + '</td><td>' + lname + '</td><td>' + interests + '</td>');
+
+                      
+                  });
+              });
+        })();
+    </script>
   </body>
 </html>
