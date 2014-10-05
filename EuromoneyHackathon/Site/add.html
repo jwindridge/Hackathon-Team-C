@@ -106,14 +106,23 @@
           $(document).ready(function () {
               
               $('#btnSave').click(function () {
-
+                 
                   var evtInterests = $('#InterestsTextBox').val();
+                  //var arrInterests = {
+                  //    Interests: evtInterests.replace(/,$/, "").split(",").map(function (interests) {
+                  //        return { Interests: interests };
+                  //    })
+                  //};
+                  var array = evtInterests.split(',');
 
                   var Event = new Object();
                   Event.EventName = $('#EventNameTextBox').val();
-                  //Event.Location = $('#LocationTextBox').val();
-                  //Event.IJNterests = $('#LocationTextBox').val();
+                  Event.Location = $('#LocationTextBox').val();
+                  Event.Interests = array;  //JSON.stringify(arrInterests).toString();
+                  //Event.Interests = JSON.stringify(jsonfied);
+                  console.log(Event);
 
+                  console.log(Event);
                   var request = $.ajax({
                       url: "http://localhost:12067/api/Event",
                       type: "put",
@@ -129,7 +138,7 @@
 
                   request.fail(function (jqXHR, textStatus) {
                       console.log(this);
-                      alert("Request failed: " + textStatus);
+                      //alert("Request failed: " + textStatus);
                   });
               });
           });
