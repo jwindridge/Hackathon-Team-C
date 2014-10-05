@@ -16,7 +16,8 @@ namespace EuromoneyHackathon.External
 {
     public class MarkLogicLayer
     {
-        private static string baseUrl = @"http://emhackathon2014-ml-c.cloudapp.net:8004/v1/documents";
+        private static string baseDocumentUrl = @"http://emhackathon2014-ml-c.cloudapp.net:8004/v1/documents";
+        private static string baseSearchUrl = @"http://emhackathon2014-ml-c.cloudapp.net:8004/v1/keyvalue?key={0}&value={1}&format=json";
         
         //private MarkLogicLayer instance;
 
@@ -27,9 +28,9 @@ namespace EuromoneyHackathon.External
 
         public static JObject getEventMLById(string id)
         {
-            var client = new RestClient("http://emhackathon2014-ml-c.cloudapp.net:8004/");
+            var client = new RestClient(baseDocumentUrl);
             client.Authenticator = new HttpBasicAuthenticator("admin", "M4rkL0gic");
-            var request = new RestRequest("v1/documents?uri=event_{id}.json", Method.GET);
+            var request = new RestRequest("?uri=event_{id}.json", Method.GET);
             request.AddUrlSegment("id", id);
 
             RestResponse response = (RestResponse)client.Execute(request);
@@ -46,9 +47,9 @@ namespace EuromoneyHackathon.External
 
         public static JObject getPersonMLById(string id)
         {
-            var client = new RestClient("http://emhackathon2014-ml-c.cloudapp.net:8004/");
+            var client = new RestClient(baseDocumentUrl);
             client.Authenticator = new HttpBasicAuthenticator("admin", "M4rkL0gic");
-            var request = new RestRequest("v1/documents?uri=person_{id}.json", Method.GET);
+            var request = new RestRequest("?uri=person_{id}.json", Method.GET);
             request.AddUrlSegment("id", id);
 
             RestResponse response = (RestResponse)client.Execute(request);
@@ -63,15 +64,51 @@ namespace EuromoneyHackathon.External
             return result;
         }
 
-        //public static JObject getPersonMLByEmail(string email)
-        //{
-        //    var client = new RestClient("http://emhackathon2014-ml-c.cloudapp.net:8004/");
-        //    client.Authenticator = new HttpBasicAuthenticator("admin", "M4rkL0gic");
-            
-        //}
+        public static Person getPersonMLByEmail(string email)
+        {
+            String personSearchURL = String.Format(baseSearchUrl, "EmailAddress", HttpUtility.UrlEncode(email));
+            HttpWebRequest personSearchRequest = (HttpWebRequest)HttpWebRequest.Create(personSearchURL);
+            personSearchRequest.Method = "GET";
+            personSearchRequest.Accept = "application/json";
+            string authInfo = "admin:M4rkL0gic";
+            authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
+            personSearchRequest.Headers["Authorization"] = "Basic " + authInfo;
+            var httpPersonSearchResponse = (HttpWebResponse)personSearchRequest.GetResponse();
+            JObject personSearchResultObject;
+            using (var streamReader = new StreamReader(httpPersonSearchResponse.GetResponseStream()))
+            {
+                var personSearchResult = streamReader.ReadToEnd();
+                personSearchResultObject = JObject.Parse(personSearchResult);
+            }
+
+            if (int.Parse(personSearchResultObject.GetValue("total").ToString()) == 1)
+            {
+                //String personSearchResultObject.GetValue("results")
+                JArray jResultArray = JArray.FromObject(personSearchResultObject.GetValue("results"));
+                JObject result = JObject.FromObject(jResultArray[0]);
+                String personUri = result["uri"].ToString();
+
+                String personGetUrl = String.Format(baseDocumentUrl + "?uri={0}", personUri);
+                HttpWebRequest personGetRequest = (HttpWebRequest)HttpWebRequest.Create(personGetUrl);
+                personGetRequest.Method = "GET";
+                personGetRequest.Accept = "application/json";
+                personGetRequest.Headers["Authorization"] = "Basic " + authInfo;
+                var httpPersonGetResponse = (HttpWebResponse)personGetRequest.GetResponse();
+                Person personGetResultObject;
+                using (var streamReader = new StreamReader(httpPersonGetResponse.GetResponseStream()))
+                {
+                    var personGetResult = streamReader.ReadToEnd();
+                    personGetResultObject = JsonConvert.DeserializeObject<Person>(personGetResult);
+                }
+                return personGetResultObject;
+                //Add LinkedIn information               
+            }
+
+            return null;
+        }
 
         public static String putPerson(Person person){
-            String requestUrl = baseUrl + "?uri=person_" + person.Id + ".json";
+            String requestUrl = baseDocumentUrl + "?uri=person_" + person.Id + ".json";
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(requestUrl);
             string authInfo = "admin:M4rkL0gic";
             authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
@@ -95,7 +132,7 @@ namespace EuromoneyHackathon.External
 
         public static String putEvent(Event eventToPut)
         {
-            String requestUrl = baseUrl + "?uri=event_" + eventToPut.Id + ".json";
+            String requestUrl = baseDocumentUrl + "?uri=event_" + eventToPut.Id + ".json";
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(requestUrl);
             string authInfo = "admin:M4rkL0gic";
             authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));

@@ -13,7 +13,7 @@ namespace EuromoneyHackathon.Models
         public string LinkedInUrl { get; set; }
         public string EmailAddress { get; set; }
 
-        public string LinkedInAuthenticationCode { get; set; }
+        public string LinkedInAccessCode { get; set; }
 
         /// <summary>
         /// Create person, specifying id, first name & last name

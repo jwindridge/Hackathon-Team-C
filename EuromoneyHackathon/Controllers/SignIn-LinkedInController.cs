@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using EuromoneyHackathon.External;
+using EuromoneyHackathon.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +17,7 @@ namespace EuromoneyHackathon.Controllers
         private static string linkedInUrl = "https://www.linkedin.com/uas/oauth2/accessToken"
             + "?grant_type=authorization_code&code={0}&redirect_uri={1}&client_id={2}&client_secret={3}";
         private static string linkedInProfileURL = "https://api.linkedin.com/v1/people/~:({0})?oauth2_access_token={1}";
-        private static string profileFieldsList = "first-name,last-name,email-address,public-profile-url,interests,skills,three-current-positions";
+        private static string profileFieldsList = "first-name,last-name,email-address,public-profile-url,interests,skills";
 
         //
         // GET: /SignIn-LinkedIn/
@@ -54,7 +56,9 @@ namespace EuromoneyHackathon.Controllers
                 profileResultObject = JObject.Parse(profileResult);
             }
 
-
+            Person markLogicPerson = MarkLogicLayer.getPersonMLByEmail(profileResultObject.GetValue("emailAddress").ToString());
+            markLogicPerson.LinkedInAccessCode = accessToken;
+            MarkLogicLayer.putPerson(markLogicPerson);
             return View();
         }
 
