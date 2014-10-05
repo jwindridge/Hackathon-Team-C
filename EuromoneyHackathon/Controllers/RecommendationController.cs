@@ -8,26 +8,26 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Web.Http;
+using System.Web.Mvc;
+
 
 namespace EuromoneyHackathon.Controllers
 {
-    public class RecommendationController : ApiController
+    public class RecommendationController : Controller
     {
         //
         // GET: /Attendance/
-        [HttpPut]
-        public Response Recommend([FromBody] dynamic values)
+        [HttpGet]
+        public ActionResult Index()
         {
-            String pid = values.pid;  // personId
-            String eid = values.eid;  // eventId
+            String pid = Request.QueryString["pid"];  // personId
             Response response = new Response();
 
-            Event[] recommendedEvent = JsonConvert.DeserializeObject<Event[]>(MarkLogicLayer.getRecommendedEventFromPersonId(eid).ToString());
+            Event[] recommendedEvent = JsonConvert.DeserializeObject<Event[]>(MarkLogicLayer.getRecommendedEventFromPersonId(pid).ToString());
 
             JArray jsonPayload = JArray.FromObject(recommendedEvent);
             response.payload = jsonPayload;
-            return response;
+            return View(jsonPayload);
         }
     }
 }

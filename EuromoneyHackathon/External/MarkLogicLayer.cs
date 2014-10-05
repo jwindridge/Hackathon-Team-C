@@ -159,7 +159,7 @@ namespace EuromoneyHackathon.External
         {
             String recommendUrl = "http://emhackathon2014-ml-c.cloudapp.net:8003/people2.xqy";
             var client = new RestClient(recommendUrl);
-            client.Authenticator = new HttpBasicAuthenticator("admin", "M4rkL0gic");
+            //client.Authenticator = new HttpBasicAuthenticator("admin", "M4rkL0gic");
             var request = new RestRequest("?id = {id}", Method.GET);
             request.AddUrlSegment("id", pid);
 
