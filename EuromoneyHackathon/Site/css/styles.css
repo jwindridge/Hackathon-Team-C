@@ -18,6 +18,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	padding-left: 55px;
 }
 
+h1.login-header {margin: 50px 0 60px 0; padding-bottom: 20px;}
+
 .navbar-inverse .navbar-toggle {border:0};
 
 .button-wrap img {width:100px}
@@ -26,19 +28,21 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .navbar-client.navbar-inverse {background:#335477;}
 
-.user-login {background: url(../img/login_bg.jpg); background-size: cover}
+.user-login {background: url(../img/login_bg.jpg); background-size: cover; min-height:700px;}
 
 .login {text-align: center}
 
 .login h1 {color:#fff;}
 
-.login img {position:relative; top:60px;}
+.login-logo {position:relative; top:30px; width:120px;}
+
+.btn-reset {background: #26618d; color:#fff;}
 
 .white {color:#fff;}
 
 .linked-login {width:300px;margin-top: -40px}
 
-.form-login {margin-top:100px;}
+.form-login {margin-top:20px;}
 
 .btn-blue {background: #1E90FF; color:#fff;}
 
