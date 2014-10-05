@@ -27,7 +27,7 @@ namespace EuromoneyHackathon.Controllers
             String code = Request.QueryString["code"];
             String state = Request.QueryString["state"];
 
-            String authRequestUrl = String.Format(linkedInUrl, code, "http://localhost:12067/signinlinkedin", "75o0z7p1kzjgby", "12II1nRBNvbTb00l");
+            String authRequestUrl = String.Format(linkedInUrl, code, "http://euromoney-hackathon-team-c.azurewebsites.net/signinlinkedin", "75o0z7p1kzjgby", "12II1nRBNvbTb00l");
 
             HttpWebRequest authRequest = (HttpWebRequest)HttpWebRequest.Create(authRequestUrl);
           

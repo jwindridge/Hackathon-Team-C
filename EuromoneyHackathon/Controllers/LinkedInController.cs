@@ -20,7 +20,7 @@ namespace EuromoneyHackathon.Controllers
             "75o0z7p1kzjgby",
             "r_fullprofile%20r_emailaddress%20r_network",
             state,
-            "http://localhost:12067/signinlinkedin"));
+            "http://euromoney-hackathon-team-c.azurewebsites.net/signinlinkedin"));
             return result;
         }
 
