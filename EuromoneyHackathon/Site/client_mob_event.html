@@ -75,11 +75,12 @@
 
           <div class="grey network">
 
-            <h3>Other attendees</h3>
+            <h3>Get to know</h3>
             <hr>
             <div class="del-wrap">
               <div class="network-img">
-            <img src="img/business_guy.jpg" alt="" class="img-responsive">
+
+            <img src="img/business_guy.jpg" alt="" class="prof-pic img-responsive">
 
            <div class="pag-wrap">
             <a href="#" class="del-arrows prev-profile"></a>
@@ -87,9 +88,9 @@
           </div>
           </div>
           <div class="network-info">
-            <h4>Graham Coles</h4>
+            <h4 class="prof-name">Graham Coles</h4>
             <hr>
-            <ul>
+            <ul class="prof-interest">
             <li>Interest 1</li>
             <li>Interest 2</li>
             <li>Interest 3</li>
@@ -132,5 +133,20 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+     <script>
+
+    $('.prev-profile').click(function(){
+
+      $('.prof-pic').attr('src','img/business_guy.jpg');
+      $('.prof-name').text('Graham Coles');
+
+    })
+    $('.next-profile').click(function(){
+
+      $('.prof-pic').attr('src','img/business_guy2.jpg');
+      $('.prof-name').text('Anthony Black');
+
+    })
+    </script>
   </body>
 </html>
