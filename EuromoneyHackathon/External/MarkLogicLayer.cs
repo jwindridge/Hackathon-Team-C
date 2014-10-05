@@ -154,5 +154,6 @@ namespace EuromoneyHackathon.External
             return httpResponse.StatusCode.ToString() + " - " + httpResponse.StatusDescription;
         }
 
+
     }
 }

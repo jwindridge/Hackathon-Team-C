@@ -63,7 +63,12 @@ namespace EuromoneyHackathon.Controllers
             }
 
             JArray skills = (JArray)profileResultObject["skills"]["values"];
-            string[] interests = profileResultObject["interests"].ToString().Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+            string[] interests = new string[] { };
+            if (profileResultObject["interests"] != null)
+            {
+                interests = profileResultObject["interests"].ToString().Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+            }
+            
             string[] companyName = currPosArray.Select(x => x["company"]["name"].ToString()).ToArray();
             string[] companyPosn = currPosArray.Select(x => x["title"].ToString()).ToArray();
             string[] skillsArr = skills.Select(x => x["skill"]["name"].ToString()).ToArray();
@@ -78,7 +83,7 @@ namespace EuromoneyHackathon.Controllers
             markLogicPerson.CompanyTitle = companyPosn;
             markLogicPerson.Interests = interests;
             markLogicPerson.LinkedInAccessCode = accessToken;
-            
+
             MarkLogicLayer.putPerson(markLogicPerson);
             return View();
 
