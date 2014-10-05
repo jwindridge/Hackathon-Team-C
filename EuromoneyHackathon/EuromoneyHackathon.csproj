@@ -298,7 +298,9 @@
     <Content Include="Site\js\bootstrap.js" />
     <Content Include="Site\js\bootstrap.min.js" />
     <Content Include="Site\login.html" />
-    <Content Include="Site\Test.txt" />
+    <Content Include="Site\Test.txt">
+      <BrowseToURL>~/Site/test.txt</BrowseToURL>
+    </Content>
     <Content Include="Site\users.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
