@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -78,7 +78,7 @@
 
           <h2 class="sub-header">Users</h2>
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped events-table">
               <thead>
                 <tr>
                   <th>#</th>
@@ -89,7 +89,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <!--<tr>
                   <td>1</td>
                   <td>Ben Macdonald</td>
                   <td>Euromoney</td>
@@ -102,7 +102,7 @@
                   <td>Bar Pass</td>
                   <td>Delegate</td>
                   <td>Golf literature, Mongolians, marzipan</td>
-                </tr>
+                </tr>-->
                 
               </tbody>
             </table>
@@ -116,5 +116,24 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+      <script>
+    (function name () {
+        var dataurl = "http://localhost:12067/api/Person";
+        $.getJSON(dataurl, {
+            format: "json"
+        })
+          .done(function (data) {
+              $.each(data.payload, function () {
+                  var persid = arguments[1].Id;
+                  var fname = arguments[1].FirstName;
+                  var lname = arguments[1].LastName;
+
+                  $('.events-table tbody').append('<tr><td>1</td><td>' + fname + ' ' + lname + '</td><td>2</td><td>3</td><td>4</td></tr>');
+
+              });
+          });
+    })();    
+      </script>
+
   </body>
 </html>

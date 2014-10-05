@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -81,12 +81,13 @@
           <div class="row">
           <div class="col-sm-12 col-md-4 col-md-offset-4">
              <h2 class="sub-header">Create Event</h2>
-          <form class="form-signin" role="form" action="#">
-        <input type="text" class="form-control" placeholder="Event name" required autofocus><br>
-        <input type="text" class="form-control" placeholder="Company name" required><br>
-        <input type="text" class="form-control" placeholder="Location" required><br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
-      </form>
+            <form class="form-signin" role="form" action="#">
+            <input id="EventNameTextBox" type="text" class="form-control" placeholder="Event name" required autofocus><br>
+                <input id="InterestsTextBox" type="text" class="form-control" placeholder="Interests" required><br>
+                <input id ="LocationTextBox" type="text" class="form-control" placeholder="Location" required>
+                    <br>
+                    <button id="btnSave" class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+</form>
     </div>
     </div>
           
@@ -99,5 +100,50 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    
+      <script>
+
+          $(document).ready(function () {
+              
+              $('#btnSave').click(function () {
+                 
+                  var evtInterests = $('#InterestsTextBox').val();
+                  //var arrInterests = {
+                  //    Interests: evtInterests.replace(/,$/, "").split(",").map(function (interests) {
+                  //        return { Interests: interests };
+                  //    })
+                  //};
+                  var array = evtInterests.split(',');
+
+                  var Event = new Object();
+                  Event.EventName = $('#EventNameTextBox').val();
+                  Event.Location = $('#LocationTextBox').val();
+                  Event.Interests = array;  //JSON.stringify(arrInterests).toString();
+                  //Event.Interests = JSON.stringify(jsonfied);
+                  console.log(Event);
+
+                  console.log(Event);
+                  var request = $.ajax({
+                      url: "http://localhost:12067/api/Event",
+                      type: "put",
+                      contentType: "application/json",
+                      dataType: 'json',
+                      data: JSON.stringify(Event)
+                      }
+                  );
+
+                  request.done(function (msg) {
+                      $("#log").html(msg);
+                  });
+
+                  request.fail(function (jqXHR, textStatus) {
+                      console.log(this);
+                      //alert("Request failed: " + textStatus);
+                  });
+              });
+          });
+      
+    </script>
+
   </body>
 </html>
