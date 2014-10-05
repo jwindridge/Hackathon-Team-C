@@ -83,10 +83,11 @@
              <h2 class="sub-header">Create Event</h2>
             <form class="form-signin" role="form" action="#">
             <input id="EventNameTextBox" type="text" class="form-control" placeholder="Event name" required autofocus><br>
-        <!--<input type="text" class="form-control" placeholder="Company name" required><br>
-        <input type="text" class="form-control" placeholder="Location" required><br>-->
-        <button id="btnSave" class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
-      </form>
+                <input id="InterestsTextBox" type="text" class="form-control" placeholder="Interests" required><br>
+                <input id ="LocationTextBox" type="text" class="form-control" placeholder="Location" required>
+                    <br>
+                    <button id="btnSave" class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+</form>
     </div>
     </div>
           
@@ -101,23 +102,33 @@
     <script src="js/bootstrap.min.js"></script>
     
       <script>
+
           $(document).ready(function () {
               
               $('#btnSave').click(function () {
-                  //alert('save')
 
-                  var evtName = $('#EventNameTextBox').val();
+                  var evtInterests = $('#InterestsTextBox').val();
+
+                  var Event = new Object();
+                  Event.EventName = $('#EventNameTextBox').val();
+                  //Event.Location = $('#LocationTextBox').val();
+                  //Event.IJNterests = $('#LocationTextBox').val();
+
                   var request = $.ajax({
                       url: "http://localhost:12067/api/Event",
-                      type: "POST",
-                      data: { eventName: evtName }
-                  });
+                      type: "put",
+                      contentType: "application/json",
+                      dataType: 'json',
+                      data: JSON.stringify(Event)
+                      }
+                  );
 
                   request.done(function (msg) {
                       $("#log").html(msg);
                   });
 
                   request.fail(function (jqXHR, textStatus) {
+                      console.log(this);
                       alert("Request failed: " + textStatus);
                   });
               });

@@ -124,12 +124,9 @@
         })
           .done(function (data) {
               $.each(data.payload, function () {
-                  var persid = arguments[1].personId;
-                  var fname = arguments[1].personFirstName;
-                  var lname = arguments[1].personLastName;
-                  console.log(fname)
-                  //var role = ;
-                  //var interests ;
+                  var persid = arguments[1].Id;
+                  var fname = arguments[1].FirstName;
+                  var lname = arguments[1].LastName;
 
                   $('.events-table tbody').append('<tr><td>1</td><td>' + fname + ' ' + lname + '</td><td>2</td><td>3</td><td>4</td></tr>');
 

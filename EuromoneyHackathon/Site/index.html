@@ -122,20 +122,18 @@
         })
           .done(function (data) {
               $.each(data.payload, function () {
-                  var evtid = arguments[1].eventId;
-                  var evtname = arguments[1].eventName;
+                  var evtid = arguments[1].Id;
+                  var evtname = arguments[1].EventName;
                   //var lname = arguments[1].personLastName;
-                  console.log(evtname)
+                  //console.log(evtname)
                   //var role = ;
                   //var interests ;
 
                   $('.events-table tbody').append('<tr><td>1</td><td>' + evtname + '</td><td>2</td><td>3</td><td>4</td></tr>');
-
               });
           });
     })();
       </script>
-
 
   </body>
 </html>
