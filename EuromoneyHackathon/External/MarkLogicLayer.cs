@@ -157,17 +157,28 @@ namespace EuromoneyHackathon.External
 
         public static JArray getRecommendedEventFromPersonId(string pid)
         {
-            String recommendUrl = "http://emhackathon2014-ml-c.cloudapp.net:8003/people2.xqy";
-            var client = new RestClient(recommendUrl);
-            //client.Authenticator = new HttpBasicAuthenticator("admin", "M4rkL0gic");
-            var request = new RestRequest("?id = {id}", Method.GET);
-            request.AddUrlSegment("id", pid);
+            String recommendUrl = String.Format("http://emhackathon2014-ml-c.cloudapp.net:8003/people2.xqy?id={0}",pid);
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(recommendUrl);
+            request.Method = "GET";
+            var httpResponse = (HttpWebResponse)request.GetResponse();
+            JArray serverResponse;
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = streamReader.ReadToEnd();
+                serverResponse = JArray.Parse(result);
+            }
+            return serverResponse;
 
-            RestResponse response = (RestResponse)client.Execute(request);
-            var content = response.Content;
-            JArray result = JArray.Parse(content);
+            //var client = new RestClient(recommendUrl);
+            ////client.Authenticator = new HttpBasicAuthenticator("admin", "M4rkL0gic");
+            //var request = new RestRequest("?id = {id}", Method.GET);
+            //request.AddUrlSegment("id", pid);
 
-            return result;
+            //RestResponse response = (RestResponse)client.Execute(request);
+            //var content = response.Content;
+            //JArray result = JArray.Parse(content);
+
+            //return result;
         }
 
     }

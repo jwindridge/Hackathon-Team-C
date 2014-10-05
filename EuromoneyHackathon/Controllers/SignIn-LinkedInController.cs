@@ -95,8 +95,8 @@ namespace EuromoneyHackathon.Controllers
             }
 
             MarkLogicLayer.putPerson(markLogicPerson);
-            return View();
-
+            return View(JObject.FromObject(markLogicPerson));
+            //RedirectToAction();
         }
 
         public JObject queryWiki(string companyName)
