@@ -37,7 +37,7 @@ namespace EuromoneyHackathon.Controllers
         public Response GetEvent(string eid)
         {
             Response response = new Response();
-            var _event = MarkLogicLayer.getEventML(eid);
+            var _event = MarkLogicLayer.getEventMLById(eid);
             //var _event = events.FirstOrDefault((p)=> p.EventName == name);         
           
             if (_event == null)
@@ -54,7 +54,7 @@ namespace EuromoneyHackathon.Controllers
 
        // public void queryEvent(string eid)
         //{
-       //    MarkLogicLayer.getEventML(eid);
+       //    MarkLogicLayer.getEventMLById(eid);
         //}
 
         public Response PutEvent([FromBody]Event eventToPut)

@@ -15,7 +15,7 @@ namespace EuromoneyHackathon.Controllers
         private static string linkedInUrl = "https://www.linkedin.com/uas/oauth2/accessToken"
             + "?grant_type=authorization_code&code={0}&redirect_uri={1}&client_id={2}&client_secret={3}";
         private static string linkedInProfileURL = "https://api.linkedin.com/v1/people/~:({0})?oauth2_access_token={1}";
-        private static string profileFieldsList = "first-name,last-name,public-profile-url,interests,skills";
+        private static string profileFieldsList = "first-name,last-name,email-address,public-profile-url,interests,skills,three-current-positions";
 
         //
         // GET: /SignIn-LinkedIn/
@@ -53,6 +53,8 @@ namespace EuromoneyHackathon.Controllers
                 var profileResult = streamReader.ReadToEnd();
                 profileResultObject = JObject.Parse(profileResult);
             }
+
+
             return View();
         }
 

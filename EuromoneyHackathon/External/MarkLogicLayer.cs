@@ -25,7 +25,7 @@ namespace EuromoneyHackathon.External
 
         }
 
-        public static JObject getEventML(string id)
+        public static JObject getEventMLById(string id)
         {
             var client = new RestClient("http://emhackathon2014-ml-c.cloudapp.net:8004/");
             client.Authenticator = new HttpBasicAuthenticator("admin", "M4rkL0gic");
@@ -44,7 +44,7 @@ namespace EuromoneyHackathon.External
             return result;
         }
 
-        public static JObject getPersonML(string id)
+        public static JObject getPersonMLById(string id)
         {
             var client = new RestClient("http://emhackathon2014-ml-c.cloudapp.net:8004/");
             client.Authenticator = new HttpBasicAuthenticator("admin", "M4rkL0gic");
@@ -62,6 +62,13 @@ namespace EuromoneyHackathon.External
 
             return result;
         }
+
+        //public static JObject getPersonMLByEmail(string email)
+        //{
+        //    var client = new RestClient("http://emhackathon2014-ml-c.cloudapp.net:8004/");
+        //    client.Authenticator = new HttpBasicAuthenticator("admin", "M4rkL0gic");
+            
+        //}
 
         public static String putPerson(Person person){
             String requestUrl = baseUrl + "?uri=person_" + person.Id + ".json";
