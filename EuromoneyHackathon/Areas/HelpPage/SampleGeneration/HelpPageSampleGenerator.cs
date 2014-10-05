@@ -46,7 +46,7 @@ namespace EuromoneyHackathon.Areas.HelpPage
         public IDictionary<Type, object> SampleObjects { get; internal set; }
 
         /// <summary>
-        /// Gets the request body samples for a given <see cref="ApiDescription"/>.
+        /// Gets the authRequest body samples for a given <see cref="ApiDescription"/>.
         /// </summary>
         /// <param name="api">The <see cref="ApiDescription"/>.</param>
         /// <returns>The samples keyed by media type.</returns>
@@ -66,10 +66,10 @@ namespace EuromoneyHackathon.Areas.HelpPage
         }
 
         /// <summary>
-        /// Gets the request or response body samples.
+        /// Gets the authRequest or response body samples.
         /// </summary>
         /// <param name="api">The <see cref="ApiDescription"/>.</param>
-        /// <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+        /// <param name="sampleDirection">The value indicating whether the sample is for a authRequest or for a response.</param>
         /// <returns>The samples keyed by media type.</returns>
         public virtual IDictionary<MediaTypeHeaderValue, object> GetSample(ApiDescription api, SampleDirection sampleDirection)
         {
@@ -128,7 +128,7 @@ namespace EuromoneyHackathon.Areas.HelpPage
         /// <param name="type">The CLR type.</param>
         /// <param name="formatter">The formatter.</param>
         /// <param name="mediaType">The media type.</param>
-        /// <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+        /// <param name="sampleDirection">The value indicating whether the sample is for a authRequest or for a response.</param>
         /// <returns>The sample that matches the parameters.</returns>
         public virtual object GetActionSample(string controllerName, string actionName, IEnumerable<string> parameterNames, Type type, MediaTypeFormatter formatter, MediaTypeHeaderValue mediaType, SampleDirection sampleDirection)
         {
@@ -174,7 +174,7 @@ namespace EuromoneyHackathon.Areas.HelpPage
         /// <param name="controllerName">Name of the controller.</param>
         /// <param name="actionName">Name of the action.</param>
         /// <param name="parameterNames">The parameter names.</param>
-        /// <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+        /// <param name="sampleDirection">The value indicating whether the sample is for a authRequest or a response.</param>
         /// <param name="formatters">The formatters.</param>
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "This is only used in advanced scenarios.")]
         public virtual Type ResolveType(ApiDescription api, string controllerName, string actionName, IEnumerable<string> parameterNames, SampleDirection sampleDirection, out Collection<MediaTypeFormatter> formatters)

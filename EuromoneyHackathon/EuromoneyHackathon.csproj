@@ -40,6 +40,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -160,9 +164,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LinkedInController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\RecommendationController.cs" />
+    <Compile Include="Controllers\SignIn-LinkedInController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="External\MarkLogicLayer.cs" />
     <Compile Include="Global.asax.cs">
@@ -258,6 +266,25 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Site\add.html" />
+    <Content Include="Site\client_create.html" />
+    <Content Include="Site\client_index2.html" />
+    <Content Include="Site\client_users.html" />
+    <Content Include="Site\css\bootstrap-theme.css" />
+    <Content Include="Site\css\bootstrap-theme.min.css" />
+    <Content Include="Site\css\bootstrap.css" />
+    <Content Include="Site\css\bootstrap.min.css" />
+    <Content Include="Site\css\styles.css" />
+    <Content Include="Site\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Site\img\icon_add.jpg" />
+    <Content Include="Site\img\icon_users.jpg" />
+    <Content Include="Site\img\icon_view.jpg" />
+    <Content Include="Site\img\logo.png" />
+    <Content Include="Site\index.html" />
+    <Content Include="Site\js\bootstrap.js" />
+    <Content Include="Site\js\bootstrap.min.js" />
+    <Content Include="Site\Test.txt" />
+    <Content Include="Site\users.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -286,10 +313,14 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Site\css\bootstrap-theme.css.map" />
+    <Content Include="Site\css\bootstrap.css.map" />
+    <Content Include="Site\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Site\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Site\fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Site\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
