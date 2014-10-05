@@ -16,25 +16,29 @@ namespace EuromoneyHackathon.Controllers
 
     public class PersonController : ApiController
     {
-        Person[] people = new Person[]{
-          new Person("John","Smith"),
-          new Person("Alex","Jones")
-        };
+        //Comment this back in
+        //Person[] people = new Person[]{
+        //  new Person("John","Smith","https://www.linkedin.com/pub/john-smith/12/345/678","john.smith@example.com"),
+        //  new Person("Alex","Jones","https://www.linkedin.com/pub/alex-jones/98/765/432","alex.jones@test.com")
+        //};
+
+
         /// <summary>
         /// Basic method to return a list of all people stored in the database (currently maintaned as static above)
         /// </summary>
         /// <returns>Array of all people stored in the system</returns>
-        public Response GetAllPeople()
-        {
-            Response response = new Response();
-            response.payload = people;
-            return response;
-        }
+        /// Comment this back in
+        //public Response GetAllPeople()
+        //{
+        //    Response response = new Response();
+        //    response.payload = people;
+        //    return response;
+        //}
 
         public Response getPerson(string pid)
         {
             Response response = new Response();
-            var person = MarkLogicLayer.getPersonML(pid);
+            var person = MarkLogicLayer.getPersonMLById(pid);
             //var _event = events.FirstOrDefault((p)=> p.EventName == name);         
 
             if (person == null)
@@ -54,10 +58,11 @@ namespace EuromoneyHackathon.Controllers
         {
             Response response = new Response();
             String mlResponse = MarkLogicLayer.putPerson(person);
-            JObject jsonPayload = new JObject();
-            jsonPayload.Add("server-message", mlResponse);
+            JObject jsonPayload = JObject.FromObject(person);
             response.payload = jsonPayload;
             return response;
         }
+
+        
     }
 }

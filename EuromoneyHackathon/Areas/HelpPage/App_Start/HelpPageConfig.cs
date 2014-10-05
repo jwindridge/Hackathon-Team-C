@@ -31,7 +31,7 @@ namespace EuromoneyHackathon.Areas.HelpPage
             //// and have IEnumerable<string> as the body parameter or return type.
             //config.SetSampleForType("[0]=foo&[1]=bar", new MediaTypeHeaderValue("application/x-www-form-urlencoded"), typeof(IEnumerable<string>));
 
-            //// Uncomment the following to use "1234" directly as the request sample for media type "text/plain" on the controller named "Values"
+            //// Uncomment the following to use "1234" directly as the authRequest sample for media type "text/plain" on the controller named "Values"
             //// and action named "Put".
             //config.SetSampleRequest("1234", new MediaTypeHeaderValue("text/plain"), "Values", "Put");
 
@@ -39,7 +39,7 @@ namespace EuromoneyHackathon.Areas.HelpPage
             //// on the controller named "Values" and action named "Get" with parameter "id".
             //config.SetSampleResponse(new ImageSample("../images/aspNetHome.png"), new MediaTypeHeaderValue("image/png"), "Values", "Get", "id");
 
-            //// Uncomment the following to correct the sample request when the action expects an HttpRequestMessage with ObjectContent<string>.
+            //// Uncomment the following to correct the sample authRequest when the action expects an HttpRequestMessage with ObjectContent<string>.
             //// The sample will be generated as if the controller named "Values" and action named "Get" were having string as the body parameter.
             //config.SetActualRequestType(typeof(string), "Values", "Get");
 
