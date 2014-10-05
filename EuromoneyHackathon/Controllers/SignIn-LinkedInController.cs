@@ -83,7 +83,7 @@ namespace EuromoneyHackathon.Controllers
             markLogicPerson.CompanyTitle = companyPosn;
             markLogicPerson.Interests = interests;
             markLogicPerson.LinkedInAccessCode = accessToken;
-            
+
             MarkLogicLayer.putPerson(markLogicPerson);
             return View();
 

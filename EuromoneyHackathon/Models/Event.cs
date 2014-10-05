@@ -13,6 +13,8 @@ namespace EuromoneyHackathon.Models
         public string[] Attendees { get; set; }
         public string Location { get; set; }
         public string Type = "Event";
+        public DateTime EventStartTime { get; set; }
+        public DateTime EventEndTime { get; set; }
 
         /// <summary>
         /// Create event, generating new random Id, with name specified by user
@@ -43,6 +45,8 @@ namespace EuromoneyHackathon.Models
             this.Id = Guid.NewGuid().ToString().Replace("{", "").Replace("}", "").Replace("-", "");
             this.Interests = new string[] { };
             this.Attendees = new string[] { };
+            this.EventStartTime = new DateTime();
+            this.EventEndTime = new DateTime();
         }
 
     }

@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -78,31 +78,31 @@
 
           <h2 class="sub-header">Events</h2>
           <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Company</th>
-                  <th>Location</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Lightswitch Design International</td>
-                  <td>Lightswitches 'R' Us</td>
-                  <td>Hastings</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Church Supplies South East Asia</td>
-                  <td>Religious Accesories Inc.</td>
-                  <td>Outer Mongolia</td>
-                </tr>
-                
-              </tbody>
-            </table>
+              <table class="table table-striped events-table">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Name</th>
+                          <th>Company</th>
+                          <th>Location</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <!--<tr>
+              <td>1</td>
+              <td>Lightswitch Design International</td>
+              <td>Lightswitches 'R' Us</td>
+              <td>Hastings</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Church Supplies South East Asia</td>
+              <td>Religious Accesories Inc.</td>
+              <td>Outer Mongolia</td>
+            </tr>-->
+
+                  </tbody>
+              </table>
           </div>
         </div>
       </div>
@@ -113,5 +113,27 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
+      <script>
+    (function name() {
+        var dataurl = "http://localhost:12067/api/Event";
+        $.getJSON(dataurl, {
+            format: "json"
+        })
+          .done(function (data) {
+              $.each(data.payload, function () {
+                  var evtid = arguments[1].Id;
+                  var evtname = arguments[1].EventName;
+                  //var lname = arguments[1].personLastName;
+                  //console.log(evtname)
+                  //var role = ;
+                  //var interests ;
+
+                  $('.events-table tbody').append('<tr><td>1</td><td>' + evtname + '</td><td>2</td><td>3</td><td>4</td></tr>');
+              });
+          });
+    })();
+      </script>
+
   </body>
 </html>
