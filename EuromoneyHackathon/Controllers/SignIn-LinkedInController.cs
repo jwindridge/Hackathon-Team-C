@@ -55,11 +55,33 @@ namespace EuromoneyHackathon.Controllers
                 var profileResult = streamReader.ReadToEnd();
                 profileResultObject = JObject.Parse(profileResult);
             }
+            //TODO: Extract company from profileResultObject
+            queryWiki("Apple Inc.");
 
             Person markLogicPerson = MarkLogicLayer.getPersonMLByEmail(profileResultObject.GetValue("emailAddress").ToString());
             markLogicPerson.LinkedInAccessCode = accessToken;
             MarkLogicLayer.putPerson(markLogicPerson);
             return View();
+
+        }
+
+        public JObject queryWiki(string companyName)
+        {
+            companyName = HttpUtility.UrlEncode(companyName);
+            String wikiBaseUrl = "http://en.wikipedia.org/w/api.php?action=query&titles={0}&prop=revisions&rvprop=content&rvsection=0&format=json";
+
+            String queryWikiUrl = String.Format(wikiBaseUrl, companyName);
+            HttpWebRequest queryWikiRequest = (HttpWebRequest) HttpWebRequest.Create(queryWikiUrl);
+            queryWikiRequest.Method = "GET";
+            queryWikiRequest.Headers.Add("x-li-format: json");
+
+            var companyWikiResponse = (HttpWebResponse) queryWikiRequest.GetResponse();
+            JObject companyIntroObject;
+            using (var streamReader = new StreamReader(companyWikiResponse.GetResponseStream())){
+                var wikiResult = streamReader.ReadToEnd();
+                companyIntroObject = JObject.Parse(wikiResult);
+            }
+            return companyIntroObject;
         }
 
     }
