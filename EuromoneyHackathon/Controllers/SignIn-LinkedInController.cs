@@ -17,7 +17,7 @@ namespace EuromoneyHackathon.Controllers
         private static string linkedInUrl = "https://www.linkedin.com/uas/oauth2/accessToken"
             + "?grant_type=authorization_code&code={0}&redirect_uri={1}&client_id={2}&client_secret={3}";
         private static string linkedInProfileURL = "https://api.linkedin.com/v1/people/~:({0})?oauth2_access_token={1}";
-        private static string profileFieldsList = "first-name,last-name,email-address,public-profile-url,interests,skills,company";
+        private static string profileFieldsList = "first-name,last-name,email-address,public-profile-url,interests,skills,positions";
 
         //
         // GET: /SignIn-LinkedIn/
@@ -56,10 +56,21 @@ namespace EuromoneyHackathon.Controllers
                 profileResultObject = JObject.Parse(profileResult);
             }
             //TODO: Extract company and interests from profileResultObject
-            queryWiki("Apple Inc.");
+            JArray positions = (JArray)profileResultObject["positions"]["values"];
+            JArray currPosArray = JArray.FromObject(positions.Where(x => (bool)JObject.FromObject(x).GetValue("isCurrent") == true));
+            if (currPosArray.Count != 0) {
+                queryWiki(currPosArray[0]["company"]["name"].ToString());
+            }
 
             Person markLogicPerson = MarkLogicLayer.getPersonMLByEmail(profileResultObject.GetValue("emailAddress").ToString());
             markLogicPerson.LinkedInAccessCode = accessToken;
+
+            string[] companyName = currPosArray.Select(x => x["company"]["name"].ToString()).ToArray();
+            string[] companyPosn = currPosArray.Select(x => x["title"].ToString()).ToArray();
+
+            markLogicPerson.CompanyName = companyName;
+            markLogicPerson.CompanyTitle = companyPosn;
+
             MarkLogicLayer.putPerson(markLogicPerson);
             return View();
 

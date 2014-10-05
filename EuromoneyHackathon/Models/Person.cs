@@ -13,6 +13,8 @@ namespace EuromoneyHackathon.Models
         public string LinkedInUrl { get; set; }
         public string EmailAddress { get; set; }
         public string[] Interests { get; set; }
+        public string[] CompanyName { get; set; }
+        public string[] CompanyTitle { get; set; }
         public string Type = "Person";
 
         public string LinkedInAccessCode { get; set; }
@@ -51,6 +53,8 @@ namespace EuromoneyHackathon.Models
         {
             this.Id = Guid.NewGuid().ToString().Replace("{", "").Replace("}", "").Replace("-", "");
             this.Interests = new string[] { };
+            this.CompanyName = new string[] { };
+            this.CompanyTitle = new string[] { };
         }
     }
 }
