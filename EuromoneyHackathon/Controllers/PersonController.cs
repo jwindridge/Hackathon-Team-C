@@ -16,24 +16,22 @@ namespace EuromoneyHackathon.Controllers
 
     public class PersonController : ApiController
     {
-        //Comment this back in
-        //Person[] people = new Person[]{
-        //  new Person("John","Smith","https://www.linkedin.com/pub/john-smith/12/345/678","john.smith@example.com"),
-        //  new Person("Alex","Jones","https://www.linkedin.com/pub/alex-jones/98/765/432","alex.jones@test.com")
-        //};
-
+        Person[] people = new Person[]{
+          new Person("John","Smith","https://www.linkedin.com/pub/john-smith/12/345/678","john.smith@example.com"),
+          new Person("Alex","Jones","https://www.linkedin.com/pub/alex-jones/98/765/432","alex.jones@test.com")
+        };
 
         /// <summary>
         /// Basic method to return a list of all people stored in the database (currently maintaned as static above)
         /// </summary>
         /// <returns>Array of all people stored in the system</returns>
         /// Comment this back in
-        //public Response GetAllPeople()
-        //{
-        //    Response response = new Response();
-        //    response.payload = people;
-        //    return response;
-        //}
+        public Response GetAllPeople()
+        {
+            Response response = new Response();
+            response.payload = people;
+            return response;
+        }
 
         public Response getPerson(string pid)
         {

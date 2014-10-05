@@ -50,6 +50,13 @@ h1.login-header {margin: 50px 0 60px 0; padding-bottom: 20px;}
 
 .client-mob h3 {font-size: 18px; margin:0;}
 
+.del-arrows { display: inline-block; width: 40%; height: 50px; }
+
+.pag-wrap {clear: both; height: 30px;}
+
+.prev-profile {background:url(../img/icon_prev.png) left center no-repeat; float: left}
+.next-profile {background:url(../img/icon_next.png) right center no-repeat; float: right;}
+
 .grey {border-width: 1px 1px 2px;
 border-style: solid;
 border-color: #D8D8D8;
@@ -91,7 +98,7 @@ background-position:center; background-repeat:  no-repeat;padding-bottom: 0;}
 
 .network {position: relative;}
 
-.network-img {margin-bottom:50px; width: 50%; float: left;}
+.network-img {margin-bottom:40px; width: 50%; float: left;}
 
 .network-info {margin-bottom:50px; width: 50%; float:right; padding-left:10px ; }
 
@@ -100,16 +107,18 @@ background-position: top left; background-repeat:  no-repeat;}
 
 .network-btn {position: absolute; bottom:8px; width: 47%; background:#335477; border:0; border-bottom: 4px solid #243240; padding:10px; color:#fff; box-sizing: border-box; -moz-box-sizing: border-box;}
 
-.btn2 {right:10px; border-left: 1px solid #4956ee}
+.btn2 {right:10px; border-left: 1px solid #4956ee; background: #2d4661;}
 
 .fleft {float: left; margin-right:10px;}
 
 .del-wrap {overflow: hidden}
 
-.del-wrap li {position: relative; left: -20px}
+.del-wrap li {position: relative; left: -20px; line-height: 25px}
 
-.meeting, .lin {display: block; padding-left:30px; margin-bottom: 5px}
+.meeting, .lin, .wik {display: block; padding-left:30px; margin-bottom: 5px}
 
 .meeting {background: url(../img/icon_mail.png) left center no-repeat;}
 
 .lin {background: url(../img/icon_lin.png) left center no-repeat;}
+
+.wik {background: url(../img/icon_wik.png) left center no-repeat;}

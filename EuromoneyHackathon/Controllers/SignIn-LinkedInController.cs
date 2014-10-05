@@ -78,11 +78,21 @@ namespace EuromoneyHackathon.Controllers
             interests = interestList.ToArray();
 
 
-            Person markLogicPerson = MarkLogicLayer.getPersonMLByEmail(profileResultObject.GetValue("emailAddress").ToString());
+            Person markLogicPerson = new Person(); //MarkLogicLayer.getPersonMLByEmail(profileResultObject.GetValue("emailAddress").ToString());
+            markLogicPerson.FirstName = profileResultObject["firstName"].ToString();
+            markLogicPerson.LastName = profileResultObject["lastName"].ToString();
+            markLogicPerson.EmailAddress = profileResultObject["emailAddress"].ToString();
+            markLogicPerson.LinkedInUrl = profileResultObject["publicProfileUrl"].ToString();
             markLogicPerson.CompanyName = companyName;
             markLogicPerson.CompanyTitle = companyPosn;
             markLogicPerson.Interests = interests;
             markLogicPerson.LinkedInAccessCode = accessToken;
+
+            Person existMLPerson = MarkLogicLayer.getPersonMLByEmail(markLogicPerson.EmailAddress);
+            if (existMLPerson != null)
+            {
+                markLogicPerson.Id = existMLPerson.Id;
+            }
 
             MarkLogicLayer.putPerson(markLogicPerson);
             return View();
